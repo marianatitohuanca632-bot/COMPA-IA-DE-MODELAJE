@@ -42,6 +42,96 @@
                     <p>horarios de 9:00 am ; 18:00pm</p>
                 </article>
             </section>
+            <table>
+                <caption>Precios de las clases por mes y disponibilidad de horarios</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">MENSUAL</th>
+                        <th scope="col">PRECIO</th>
+                        <th scope="col">DISPONIBLE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Clase mensual damas</td> <td>Bs 250 </td> <td>turno mañana y tarde</td></tr>
+                    <tr><td>Clase mensual varones</td> <td>Bs 200 </td> <td>turno mañana y tarde</td></tr>
+                    <tr><td>Clase mensual kids</td>  <td>Bs 180 </td> <td>turno mañana</td></tr>
+                </tbody>
+            </table>
+            <figure>
+                    <img src="model.webp "
+                        alt="MODELOS FEMENINAS DE LA AGENCIA"
+                        width="600" height="400">
+                    <figcaption>Nuestras primeras modelos</figcaption>
+                </figure>
+            </main>    
+            <section id="pedido">
+                <h2>Hacer una inscripcion</h2>
+                <form action="/inscripcion" method="post">
+                    <filidset>
+                        <legend> TUS DATOS</legend>
+                        <p>
+                            <label for="nombre">NOMBRE COMPLETO</label>
+                            <input type="text" id="nombre" name="nombre" 
+                            autocomplete="name" required>
+                        </p>
+                        <p>
+                            <label for="email">CORREO ELECTRONICO</label>
+                            <input type="email" id="email" name="email"
+                            autocomplete="email" required>
+                        </p>
+                        <p>
+                            <label for="telefono">TELEFONO</label>
+                            <input type="tel" id="telefono" name="telefono"
+                            autocomplete="tel" pattern="[0-9][7,8]"
+                            tittle="7 u 8 digitos , sin espacios">
+                        </p>
+                    </filidset>
+                    <filidset>
+                        <legend>TU INSCRIPCION</legend>
+                        <P>
+                            <label for="inscripcion">MESES DE INSCRIPCION</label>
+                
+                        <select id="inscripcion" name="inscripcion" required>
+                            <option value="">Elige uno</option>
+                            <option value="dia">turno</option>
+                            <option value="integral">modelo femenino</option>
+                            <option value="integral">modelo masculino</option>
+                            <option value="integral">modelo kids</option>
+                            
+              </select>
+            </p>
+
+            <p>
+              <label for="cantidad">Cantidad</label>
+              <input type="number" id="cantidad" name="cantidad"
+                     min="1" max="100" value="1" required>
+            </p>
+
+            <p>
+              <label for="fecha">Fecha de inicio</label>
+              <input type="date" id="fecha" name="fecha" required>
+            </p>
+
+            <p>
+              <label for="notas">Alguna indicación</label>
+              <textarea id="notas" name="notas" rows="3"></textarea>
+            </p>
+
+            <p>
+
+              <input type="checkbox" id="terminos" name="terminos" required>
+              <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
+            </p>
+          </fieldset>
+
+          <button type="submit">Enviar pedido</button>
+        </form>
+      </section>
+
+                        </P>
+                    </filidset>
+                </form>
+            </section>
             <aside>
                 <h2>¿Sabias?</h2>
                 <p>La miss UNIVERSO es de nuestra compañia</p>
