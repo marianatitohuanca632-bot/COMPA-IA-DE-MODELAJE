@@ -1,154 +1,458 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="tienda de ropa. siempre de alta calidad.">
-        <title>COMPAÑIA DE MODELAJE MAHE</title>
-        <link rel="stylesheet" href="stilo.css">
 
-    </head>
-    <body>
-        <header>
-            <h1>MODELAJE EN LAS ALTURAS GOLD</h1>
-            <p>ENSEÑANZA DE PRMER NIVEL</p>
-            <nav>
-                <ul>
-                    <li><a href="#Galeria">Galeria</a></li>
-                    <li><a href="#Horarios">Horarios</a></li>
-                    <li><a href="#Contactos">Contactos</a></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Compañía de Modelaje MAHE - Enseñanza de primer nivel en pasarela, fotografía, etiqueta y oratoria en La Paz, Bolivia.">
+    <title>COMPAÑÍA DE MODELAJE MAHE | Pasarela & Alta Costura</title>
+    <!-- Tipografías elegantes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="stilo.css">
+</head>
+
+<body>
+    <header>
+        <div class="cabecera-marca">
+            <span class="corona-dorada" aria-hidden="true">👑</span>
+            <h1>COMPAÑÍA DE MODELAJE MAHE</h1>
+            <p id="lema-agencia">ENSEÑANZA DE PRIMER NIVEL • MODELAJE EN LAS ALTURAS GOLD</p>
+            <div class="estado-agencia">
+                <span id="cupos-resumen" class="badge-cupos">Cupos: Damas (40) • Varones (25) • Kids (30)</span>
+            </div>
+        </div>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-movil">
+            <span class="icono-hamburguesa" aria-hidden="true">☰</span> Menú
+        </button>
+
+        <nav id="menu-movil">
+            <ul>
+                <li><a href="#Galeria">Cursos</a></li>
+                <li><a href="#Horarios">Horarios & Precios</a></li>
+                <li><a href="#comparacion">Laboratorio</a></li>
+                <li><a href="#panel">Preguntas Frecuentes</a></li>
+                <li><a href="#noticias">Castings & Avisos</a></li>
+                <li><a href="#remoto">Cursos Remotos</a></li>
+                <li><a href="#pedido" class="enlace-resaltado">Inscripción Digital</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECCIÓN: CURSOS Y GALERÍA -->
+        <section id="Galeria" class="seccion-bloque">
+            <div class="encabezado-seccion">
+                <h2>NUESTROS CURSOS Y PROGRAMAS EXCLUSIVOS</h2>
+                <p class="subtitulo-seccion">Formación integral en modelaje profesional, alta costura, expresión y
+                    desarrollo personal.</p>
+            </div>
+
+            <div class="controles" role="search">
+                <div class="campo-busqueda">
+                    <label for="buscador" class="visualmente-oculto">Buscar cursos de modelaje</label>
+                    <input type="search" id="buscador"
+                        placeholder="Buscar curso (ej. Pasarela, Damas, Fotopose, Oratoria)...">
+                </div>
+
+                <div id="filtros" class="filtros-categoria" role="group" aria-label="Filtro de cursos por categoría">
+                    <button type="button" class="activo" data-categoria="todos">Todos</button>
+                    <button type="button" data-categoria="modelaje">Modelaje</button>
+                    <button type="button" data-categoria="damas">Damas</button>
+                    <button type="button" data-categoria="varones">Varones</button>
+                    <button type="button" data-categoria="kids">Kids</button>
+                    <button type="button" data-categoria="formacion">Formación</button>
+                    <button type="button" data-categoria="danza">Danza</button>
+                    <button type="button" data-categoria="fotografia">Fotografía</button>
+                    <button type="button" data-categoria="belleza">Belleza</button>
+                </div>
+
+                <div class="opciones-orden">
+                    <label for="orden">Ordenar por:</label>
+                    <select id="orden">
+                        <option value="predeterminado">Predeterminado</option>
+                        <option value="nombre">Nombre (A - Z)</option>
+                        <option value="precio-menor">Inversión: menor a mayor</option>
+                        <option value="precio-mayor">Inversión: mayor a menor</option>
+                    </select>
+
+                    <label class="control-checkbox">
+                        <input type="checkbox" id="soloDisponibles">
+                        <span>Solo con cupos disponibles</span>
+                    </label>
+                </div>
+            </div>
+
+            <p id="resultado" aria-live="polite" class="contador-resultados"></p>
+
+            <!-- CONTENEDOR DINÁMICO DE TARJETAS DE CURSOS -->
+            <div id="lista-productos" class="contenedor-modelos"></div>
+
+            <!-- LOGROS Y DISCIPLINAS DESTACADAS -->
+            <div class="disciplinas-grid">
+                <article class="tarjeta-disciplina" data-filtro="damas">
+                    <div class="disciplina-foto">
+                        <img src="moda_femenina.jpg" alt="Modelo femenina en pasarela de alta costura MAHE"
+                            loading="lazy">
+                        <div class="disciplina-foto-overlay">
+                            <span class="badge-disciplina">&#10024; Damas</span>
+                        </div>
+                    </div>
+                    <div class="disciplina-info">
+                        <h3>Moda Femenina</h3>
+                        <p>Dominio de pasarela de gala, manejo de tacones altos, postura y proyección escénica para
+                            reinados y pasarelas de alta costura.</p>
+                    </div>
+                    <button type="button" class="btn-disciplina" data-filtro="damas">
+                        Ver Cursos Damas &rarr;
+                    </button>
+                </article>
+                <article class="tarjeta-disciplina" data-filtro="varones">
+                    <div class="disciplina-foto">
+                        <img src="moda_masculina.jpg" alt="Modelo masculino en pasarela de alta costura MAHE"
+                            loading="lazy">
+                        <div class="disciplina-foto-overlay">
+                            <span class="badge-disciplina">&#128084; Varones</span>
+                        </div>
+                    </div>
+                    <div class="disciplina-info">
+                        <h3>Moda Masculina</h3>
+                        <p>Presencia, porte distinguido, pasarela comercial moderna y desenvolvimiento fotográfico para
+                            campañas de diseñador.</p>
+                    </div>
+                    <button type="button" class="btn-disciplina" data-filtro="varones">
+                        Ver Cursos Varones &rarr;
+                    </button>
+                </article>
+                <article class="tarjeta-disciplina" data-filtro="kids">
+                    <div class="disciplina-foto">
+                        <img src="moda_kids.jpg" alt="Niños modelos en pasarela infantil MAHE" loading="lazy">
+                        <div class="disciplina-foto-overlay">
+                            <span class="badge-disciplina">&#127775; Kids</span>
+                        </div>
+                    </div>
+                    <div class="disciplina-info">
+                        <h3>Moda Kids &amp; Teens</h3>
+                        <p>Desarrollo de seguridad personal, postura, expresión artística y pasarela infantil dinámica
+                            en un entorno ameno.</p>
+                    </div>
+                    <button type="button" class="btn-disciplina" data-filtro="kids">
+                        Ver Cursos Kids &rarr;
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: HORARIOS Y TARIFAS -->
+        <section id="Horarios" class="seccion-bloque">
+            <div class="encabezado-seccion">
+                <h2>Horarios de Atención y Modalidades</h2>
+                <p class="subtitulo-seccion">Turnos flexibles diseñados para estudiantes y personas en actividad
+                    laboral.</p>
+            </div>
+
+            <article class="panel-horario-info">
+                <h3>Horarios de Clases Presenciales</h3>
+                <p><strong>Lunes a Viernes:</strong> Turno Mañana: 09:00 a 12:00 | Turno Tarde: 15:00 a 18:00</p>
+                <p><strong>Sábados Intensivos:</strong> 09:00 a 14:00 (Módulos especiales de pasarela y fotografía)</p>
+            </article>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <caption>Precios oficiales de las clases por mes y disponibilidad de turnos</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">PROGRAMA MENSUAL</th>
+                            <th scope="col">INVERSIÓN</th>
+                            <th scope="col">TURNOS DISPONIBLES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clase mensual Damas</td>
+                            <td><span class="precio-destacado">Bs 250</span></td>
+                            <td>Turno mañana y tarde</td>
+                        </tr>
+                        <tr>
+                            <td>Clase mensual Varones</td>
+                            <td><span class="precio-destacado">Bs 200</span></td>
+                            <td>Turno mañana y tarde</td>
+                        </tr>
+                        <tr>
+                            <td>Clase mensual Kids</td>
+                            <td><span class="precio-destacado">Bs 180</span></td>
+                            <td>Turno mañana y sábados</td>
+                        </tr>
+                        <tr>
+                            <td>Taller de Pasarela & Giros</td>
+                            <td><span class="precio-destacado">Bs 150</span></td>
+                            <td>Turno tarde</td>
+                        </tr>
+                        <tr>
+                            <td>Maquillaje & Estilismo</td>
+                            <td><span class="precio-destacado">Bs 140</span></td>
+                            <td>Sábados intensivos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- FOTOGRAFÍA DE REINA DE BELLEZA DESTACADA -->
+            <figure class="figura-modelo">
+                <div class="marco-foto">
+                    <img src="model.webp" alt="Reina La Paz 2024 - Alumna destacada de la Compañía de Modelaje MAHE"
+                        width="450" height="600" loading="lazy">
+                </div>
+                <figcaption>
+                    <strong>Reina La Paz 2024</strong> — Formada con orgullo en nuestra academia MAHE. Excelencia,
+                    disciplina y porte en los certámenes más prestigiosos.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- SECCIÓN: LABORATORIO COMPARATIVO (VANILLA JS VS JQUERY) -->
+        <section id="comparacion" class="seccion-bloque">
+            <div class="encabezado-seccion">
+                <h2>Panel Interactivo: Vanilla JS vs jQuery</h2>
+                <p class="subtitulo-seccion">Demostración técnica de manipulación del DOM aplicada a la gestión de
+                    nuestra academia.</p>
+            </div>
+
+            <div class="comparacion-botones">
+                <button type="button" id="boton-vanilla" class="btn-demo">Alternar con Vanilla JS</button>
+                <button type="button" id="boton-jquery" class="btn-demo">Alternar con jQuery</button>
+            </div>
+
+            <div class="comparacion-salidas">
+                <p id="salida-vanilla" class="caja-salida">Estado MAHE (Vanilla JS): Inscripciones abiertas y pasarela
+                    activa.</p>
+                <p id="salida-jquery" class="caja-salida">Estado MAHE (jQuery): Nuevos castings y eventos programados
+                    para esta semana.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: PREGUNTAS FRECUENTES (ACORDEÓN JQUERY) -->
+        <section id="panel" class="seccion-bloque">
+            <div class="encabezado-seccion">
+                <h2>Preguntas Frecuentes sobre Nuestra Academia</h2>
+                <p class="subtitulo-seccion">Resuelve tus dudas sobre estatura, edades, requisitos y certificados.</p>
+            </div>
+
+            <div id="acordeon" class="acordeon-elegante">
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Cuáles son los requisitos de
+                            estatura y edad?</button></h3>
+                    <div class="cuerpo">
+                        <p>No exigimos una estatura mínima para nuestros cursos formativos, de postura y
+                            desenvolvimiento personal. La categoría Kids acepta niñas y niños desde los 5 años; y para
+                            pasarela de alta costura y certámenes se recomienda a partir de los 14 años.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Se otorga certificado oficial al
+                            finalizar el ciclo?</button></h3>
+                    <div class="cuerpo">
+                        <p>Sí, cada alumna y alumno recibe una certificación con valor curricular avalada por la
+                            Compañía de Modelaje MAHE, con reconocimiento en certámenes locales y agencias de
+                            publicidad.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Qué vestuario se necesita para la
+                            primera clase?</button></h3>
+                    <div class="cuerpo">
+                        <p>Para damas: ropa cómoda de color negro (calzas/leggings y blusa o remera sobria) y tacones
+                            cómodos. Para varones: calzado formal o de vestir y prendas negras. En la primera sesión se
+                            orienta sobre las necesidades específicas.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Cuáles son los métodos de pago y
+                            beneficios?</button></h3>
+                    <div class="cuerpo">
+                        <p>Aceptamos transferencias bancarias, pagos vía QR y pagos en efectivo en secretaría. Además,
+                            brindamos un 10% de descuento al inscribir dos o más materias simultáneas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: AVISOS Y PRÓXIMOS CASTINGS (JQUERY EFFECTS) -->
+        <section id="noticias" class="seccion-bloque">
+            <div class="encabezado-seccion">
+                <h2>Avisos de la Academia y Próximos Castings</h2>
+                <p class="subtitulo-seccion">Mantente informada/o de las actividades y desfiles de fin de temporada.</p>
+            </div>
+
+            <div class="noticias-contenedor">
+                <button type="button" id="mostrar-avisos" class="btn-secundario">Mostrar avisos recientes</button>
+                <ul id="avisos" class="lista-avisos">
+                    <li><span class="icono-estrella">✨</span> <strong>Casting Oficial:</strong> Audiciones abiertas para
+                        la Semana de la Moda La Paz 2026 este sábado a las 10:00 am.</li>
+                    <li><span class="icono-estrella">📸</span> <strong>Sesión Editorial:</strong> Producción fotográfica
+                        de alta costura para el book digital de alumnas graduadas.</li>
+                    <li><span class="icono-estrella">👑</span> <strong>Masterclass de Reinas:</strong> Clase especial de
+                        pasarela con nuestra Reina de Belleza La Paz 2024.</li>
+                    <li><span class="icono-estrella">🎓</span> <strong>Gala de Graduación:</strong> Desfile final en el
+                        salón de eventos principal con entrega de certificados.</li>
                 </ul>
-            </nav>
-        </header>
-        <main>
-            <section id="Galeria">
-                <h2>NUESTRAS MODELOS</h2>
-                <div class="contenedor-modelos"></div>
-                </article>
-                <article>
-                    <h3>Moda Femenina</h3>
-                    <p>logros de nuestra compañia damas</p>
-                </article>
-                <article>
-                    <h3>Moda Masculina</h3>
-                    <p>logros de nuestra compañia varones</p>
-                </article>
-                <article>
-                    <h3>Moda kids</h3>
-                    <p>logros de nuestra compañia kids</p>
-                </article>
-            </section>
-            <section id="Horarios">
-                <article>
-                    <h2>Horarios</h2>
-                    <h3>lunes a viernes</h3>
-                    <p>atencion los lunes a viernes</p>
-                    <p>horarios de 9:00 am ; 18:00pm</p>
-                </article>
-            </section>
-            <table>
-                <caption>Precios de las clases por mes y disponibilidad de horarios</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">MENSUAL</th>
-                        <th scope="col">PRECIO</th>
-                        <th scope="col">DISPONIBLE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Clase mensual damas</td> <td>Bs 250 </td> <td>turno mañana y tarde</td></tr>
-                    <tr><td>Clase mensual varones</td> <td>Bs 200 </td> <td>turno mañana y tarde</td></tr>
-                    <tr><td>Clase mensual kids</td>  <td>Bs 180 </td> <td>turno mañana</td></tr>
-                </tbody>
-            </table>
-            <figure>
-                    <img src="model.webp "
-                        alt="MODELOS FEMENINAS DE LA AGENCIA"
-                        width="600" height="400">
-                    <figcaption>Nuestras primeras modelos</figcaption>
-                </figure>
-            </main>    
-            <section id="pedido">
-                <div class="contenedor-formulario"></div>
-                <h2>Hacer una inscripcion</h2>
-                <form action="/inscripcion" method="post">
-                    <filidset>
-                        <legend> TUS DATOS</legend>
-                        <p>
-                            <label for="nombre">NOMBRE COMPLETO</label>
-                            <input type="text" id="nombre" name="nombre" 
-                            autocomplete="name" required>
-                        </p>
-                        <p>
-                            <label for="email">CORREO ELECTRONICO</label>
-                            <input type="email" id="email" name="email"
-                            autocomplete="email" required>
-                        </p>
-                        <p>
-                            <label for="telefono">TELEFONO</label>
-                            <input type="tel" id="telefono" name="telefono"
-                            autocomplete="tel" pattern="[0-9][7,8]"
-                            tittle="7 u 8 digitos , sin espacios">
-                        </p>
-                    </filidset>
-                    <filidset>
-                        <legend>TU INSCRIPCION</legend>
-                        <P>
-                            <label for="inscripcion">MESES DE INSCRIPCION</label>
-                
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CATÁLOGO REMOTO (AJAX, FETCH & JSON) -->
+        <section id="remoto" class="seccion-bloque">
+            <div class="encabezado-seccion">
+                <h2>Catálogo Remoto en Vivo (AJAX & Fetch)</h2>
+                <p class="subtitulo-seccion">Carga asíncrona de cursos desde datos.json sin recargar la página web.</p>
+            </div>
+
+            <div class="remoto-acciones">
+                <button type="button" id="cargar-fetch" class="btn-demo">Cargar con Fetch</button>
+                <button type="button" id="cargar-jquery" class="btn-demo">Cargar con jQuery</button>
+                <button type="button" id="cargar-roto" class="btn-demo">Simular Error (404)</button>
+            </div>
+
+            <p id="estado" aria-live="polite"></p>
+
+            <div id="lista-remota" class="contenedor-modelos"></div>
+        </section>
+
+        <!-- SECCIÓN: FORMULARIO DE INSCRIPCIÓN DIGITAL -->
+        <section id="pedido" class="seccion-bloque seccion-formulario">
+            <div class="encabezado-seccion">
+                <h2>Hacer una Inscripción Digital</h2>
+                <p class="subtitulo-seccion">Digitalizamos el registro para evitar pérdidas de documentos en papel.
+                    ¡Reserva tu plaza hoy mismo!</p>
+            </div>
+
+            <form id="formulario-inscripcion" method="post" novalidate>
+                <fieldset>
+                    <legend>Tus Datos Personales</legend>
+                    <p class="campo">
+                        <label for="nombre">Nombre Completo <span class="requerido">*</span></label>
+                        <input type="text" id="nombre" name="nombre" autocomplete="name"
+                            placeholder="Ej. Mariana Helen Tito" required>
+                    </p>
+
+                    <p class="campo">
+                        <label for="email">Correo Electrónico <span class="requerido">*</span></label>
+                        <input type="email" id="email" name="email" autocomplete="email"
+                            placeholder="tucorreo@ejemplo.com" required>
+                    </p>
+
+                    <p class="campo">
+                        <label for="telefono">Teléfono / WhatsApp <span class="requerido">*</span></label>
+                        <input type="tel" id="telefono" name="telefono" autocomplete="tel" pattern="[0-9]{7,8}"
+                            title="Debe contener 7 u 8 dígitos numéricos" placeholder="Ej. 71990990" required>
+                        <small class="ayuda-campo">Número celular boliviano de 7 u 8 dígitos.</small>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Detalles de tu Inscripción</legend>
+                    <p class="campo">
+                        <label for="inscripcion">Curso o Categoría de Modelaje <span class="requerido">*</span></label>
                         <select id="inscripcion" name="inscripcion" required>
-                            <option value="">Elige uno</option>
-                            <option value="dia">turno</option>
-                            <option value="integral">modelo femenino</option>
-                            <option value="integral">modelo masculino</option>
-                            <option value="integral">modelo kids</option>
-                            
-              </select>
-            </p>
+                            <option value="">Selecciona tu curso...</option>
+                            <option value="Categoria Damas">Categoría Damas (Bs 250/mes)</option>
+                            <option value="Categoria Varones">Categoría Varones (Bs 200/mes)</option>
+                            <option value="Categoria Kids">Categoría Kids (Bs 180/mes)</option>
+                            <option value="Pasarela y Giros">Pasarela y Giros (Bs 150/mes)</option>
+                            <option value="Oratoria y Locucion">Oratoria y Locución (Bs 120/mes)</option>
+                            <option value="Baile y Coreografia">Baile y Coreografía (Bs 130/mes)</option>
+                            <option value="Expresion Corporal">Expresión Corporal (Bs 100/mes)</option>
+                            <option value="Etiqueta y Protocolo">Etiqueta y Protocolo (Bs 120/mes)</option>
+                            <option value="Fotopose Editorial">Fotopose Editorial (Bs 100/mes)</option>
+                            <option value="Maquillaje y Estilismo">Maquillaje y Estilismo (Bs 140/mes)</option>
+                        </select>
+                    </p>
 
-            <p>
-              <label for="cantidad">Cantidad</label>
-              <input type="number" id="cantidad" name="cantidad"
-                     min="1" max="100" value="1" required>
-            </p>
+                    <p class="campo">
+                        <label for="cantidad">Cantidad de meses a cursar</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" max="12" value="1" required>
+                    </p>
 
-            <p>
-              <label for="fecha">Fecha de inicio</label>
-              <input type="date" id="fecha" name="fecha" required>
-            </p>
+                    <p class="campo">
+                        <label for="fecha">Fecha estimada de inicio <span class="requerido">*</span></label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </p>
 
-            <p>
-              <label for="notas">Alguna indicación</label>
-              <textarea id="notas" name="notas" rows="3"></textarea>
-            </p>
+                    <p class="campo">
+                        <label for="notas">Indicaciones o metas personales (opcional)</label>
+                        <textarea id="notas" name="notas" rows="3"
+                            placeholder="Cuéntanos tus metas, si buscas certámenes, pasarela comercial o desarrollo de postura..."></textarea>
+                    </p>
 
-            <p>
+                    <p class="campo-terminos">
+                        <input type="checkbox" id="terminos" name="terminos" required>
+                        <label for="terminos">Acepto los términos de inscripción y confirmo que los datos proporcionados
+                            son correctos.</label>
+                    </p>
+                </fieldset>
 
-              <input type="checkbox" id="terminos" name="terminos" required>
-              <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
-            </p>
-          </fieldset>
+                <div class="acciones-formulario">
+                    <button type="submit" class="btn-primario">Confirmar y Enviar Inscripción</button>
+                </div>
+            </form>
+        </section>
+    </main>
 
-          <button type="submit">Enviar pedido</button>
-        </form>
-      </section>
+    <!-- BARRA LATERAL INFORMATIVA -->
+    <aside id="sabias-que">
+        <div class="tarjeta-sabias">
+            <span class="insignia-aside" aria-hidden="true">💎</span>
+            <h2>¿Sabías que?</h2>
+            <p>Nuestras modelos y egresadas han alcanzado títulos nacionales e internacionales en pasarelas de alta
+                costura y certámenes de belleza de renombre, como Reina La Paz y Miss Bolivia.</p>
+            <p class="destacado-aside">¡En la Compañía MAHE la próxima estrella eres tú!</p>
+        </div>
+    </aside>
 
-                        </P>
-                    </filidset>
-                </form>
-            </section>
-            <aside>
-                <h2>¿Sabias?</h2>
-                <p>La miss UNIVERSO es de nuestra compañia</p>
-            </aside>
-            <footer
-                id="contacto">
-                <h2>Contacto</h2>
+    <!-- PIE DE PÁGINA -->
+    <footer id="contacto">
+        <div class="pie-contenido">
+            <div class="pie-columna">
+                <h2>COMPAÑÍA DE MODELAJE MAHE</h2>
+                <p>Enseñanza de primer nivel, disciplina y elegancia en las alturas.</p>
+            </div>
+            <div class="pie-columna">
+                <h3>Ubicación & Contacto</h3>
                 <address>
-                    Av. principal Mariano Colodro 175<br>
-                    Teléfono: 71990990
+                    Av. Principal Mariano Colodro 175<br>
+                    La Paz, Bolivia<br>
+                    Teléfono: <a href="tel:71990990">71990990</a>
                 </address>
-                <p><small>&copy; 2026 Compañia de Modelaje MAHE</small></p>
-            </footer>
-        </body>
-        </html>
+            </div>
+            <div class="pie-columna">
+                <h3>Horarios de Secretaría</h3>
+                <p>Lunes a Viernes: 09:00 - 18:00<br>Sábados: 09:00 - 14:00</p>
+            </div>
+        </div>
+        <div class="pie-derechos">
+            <p><small>&copy; 2026 Compañía de Modelaje MAHE — Realizado por Mariana Helen Tito Huanca</small></p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS EN ORDEN CORRECTO DE CARGA -->
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="datos.js"></script>
+    <script src="funciones.js"></script>
+    <script src="app.js"></script>
+    <script src="modelo.js"></script>
+    <script src="render.js"></script>
+    <script src="eventos.js"></script>
+    <script src="jquery-comparado.js"></script>
+    <script src="jquery-panel.js"></script>
+    <script src="remoto.js"></script>
+</body>
+
+</html>

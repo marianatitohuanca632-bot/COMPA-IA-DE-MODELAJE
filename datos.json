@@ -1,0 +1,64 @@
+{
+  "negocio": {
+    "nombre": "Compañía de Modelaje MAHE",
+    "fundacion": 2022,
+    "ciudad": "La Paz, Bolivia",
+    "lema": "Enseñanza de Primer Nivel - Pasarela y Alta Costura"
+  },
+  "productos": [
+    {
+      "id": 101,
+      "nombre": "Alta Costura y Pasarela Pro",
+      "precio": 280,
+      "unidad": "mes",
+      "stock": 18,
+      "disponible": true,
+      "categoria": "Modelaje"
+    },
+    {
+      "id": 102,
+      "nombre": "Fotopose & Book Editorial",
+      "precio": 160,
+      "unidad": "módulo",
+      "stock": 12,
+      "disponible": true,
+      "categoria": "Fotografia"
+    },
+    {
+      "id": 103,
+      "nombre": "Oratoria Escénica y Medios",
+      "precio": 130,
+      "unidad": "mes",
+      "stock": 15,
+      "disponible": true,
+      "categoria": "Formacion"
+    },
+    {
+      "id": 104,
+      "nombre": "Automaquillaje HD para Pasarela",
+      "precio": 150,
+      "unidad": "taller",
+      "stock": 10,
+      "disponible": true,
+      "categoria": "Belleza"
+    },
+    {
+      "id": 105,
+      "nombre": "Expresión Corporal y Coreografía",
+      "precio": 120,
+      "unidad": "mes",
+      "stock": 20,
+      "disponible": true,
+      "categoria": "Danza"
+    },
+    {
+      "id": 106,
+      "nombre": "Certamen de Reinas Intensivo",
+      "precio": 320,
+      "unidad": "intensivo",
+      "stock": 0,
+      "disponible": false,
+      "categoria": "Modelaje"
+    }
+  ]
+}
