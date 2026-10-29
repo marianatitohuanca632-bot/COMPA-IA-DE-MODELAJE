@@ -36,6 +36,7 @@ function crearTarjeta(producto) {
   const articulo = document.createElement("article");
 
   articulo.classList.add("tarjeta");
+  articulo.draggable = true;
   if (!producto.disponible || producto.stock <= 0) {
     articulo.classList.add("agotado");
   }
@@ -62,8 +63,8 @@ function crearTarjeta(producto) {
         <span class="precio-label">Inversión mensual</span>
         <span class="precio-monto">Bs ${producto.precio.toFixed(2)}</span>
       </div>
-      <button type="button" class="btn-inscribir" data-nombre="${producto.nombre}" data-precio="${producto.precio}">
-        Inscribirme
+      <button type="button" class="btn-inscribir btn-agregar-pedido" data-nombre="${producto.nombre}" data-precio="${producto.precio}">
+        Agregar
       </button>
     </div>
   `;

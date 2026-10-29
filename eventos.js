@@ -260,16 +260,7 @@ document.addEventListener("click", (event) => {
   const nombreCurso = btnInscribir.dataset.nombre || "";
   const precioCurso = btnInscribir.dataset.precio || "";
 
-  // 1. Efecto visual momentáneo en el botón
-  const textoOriginal = btnInscribir.textContent;
-  btnInscribir.textContent = "✓ ¡Seleccionado!";
-  btnInscribir.classList.add("seleccionado");
-  setTimeout(() => {
-    btnInscribir.textContent = textoOriginal;
-    btnInscribir.classList.remove("seleccionado");
-  }, 2000);
-
-  // 2. Seleccionar la opción en el select del formulario con normalización
+  // Mantener sincronizado el campo del formulario con el último curso agregado.
   if (selectInscripcion && nombreCurso) {
     let encontrado = false;
     const nombreNorm = normalizar(nombreCurso);
@@ -289,26 +280,23 @@ document.addEventListener("click", (event) => {
     }
   }
 
-  // 3. Notificación flotante elegante
+  const cursoAgregado = typeof window.agregarCursoAlTablero === "function"
+    ? window.agregarCursoAlTablero({ nombre: nombreCurso, precio: Number(precioCurso) })
+    : false;
+
+  // Notificación flotante según si se agregó o ya estaba seleccionado.
   const precioTexto = precioCurso ? ` (Bs ${parseFloat(precioCurso).toFixed(2)})` : "";
   mostrarNotificacion(
-    `Has seleccionado: <strong>${nombreCurso}</strong>${precioTexto}. Completa tus datos para confirmar tu vacante.`,
+    cursoAgregado
+      ? `Se agregó <strong>${nombreCurso}</strong>${precioTexto} a tu pedido.`
+      : `<strong>${nombreCurso}</strong>${precioTexto} ya está en tu pedido o no tiene cupos.`,
     "💎"
   );
 
-  // 4. Desplazar suavemente hacia el formulario de inscripción
-  const seccionPedido = document.querySelector("#pedido");
+  // Mostrar el resumen actualizado del pedido.
+  const seccionPedido = document.querySelector("#tablero-pedidos") || document.querySelector("#pedido");
   if (seccionPedido) {
     seccionPedido.scrollIntoView({ behavior: "smooth", block: "start" });
-    const cajaForm = seccionPedido.querySelector("fieldset") || seccionPedido;
-    cajaForm.classList.add("resaltado-temporal");
-    setTimeout(() => cajaForm.classList.remove("resaltado-temporal"), 1800);
-
-    // Enfocar el primer campo para comodidad del usuario
-    const inputNombre = document.querySelector("#nombre");
-    if (inputNombre) {
-      setTimeout(() => inputNombre.focus(), 600);
-    }
   }
 });
 
@@ -348,15 +336,33 @@ if (formulario) {
     }
 
     const datos = Object.fromEntries(new FormData(formulario));
+    const cursosPedido = typeof window.obtenerCursosDelTablero === "function"
+      ? window.obtenerCursosDelTablero()
+      : [];
+    const totalMensual = cursosPedido.reduce((suma, curso) => suma + curso.precio, 0);
+    const descuento = cursosPedido.length >= 2 ? totalMensual * 0.1 : 0;
+    const meses = Math.max(1, Number(datos.cantidad) || 1);
+    const totalInscripcion = (totalMensual - descuento) * meses;
+
+    if (cursosPedido.length) {
+      datos.inscripcion = cursosPedido.map((curso) => curso.nombre).join(", ");
+      datos.subtotalMensual = totalMensual.toFixed(2);
+      datos.descuento = descuento.toFixed(2);
+      datos.total = totalInscripcion.toFixed(2);
+    }
     console.log("Inscripción recibida en MAHE:", datos);
 
-    // Descontar cupo en memoria para reflejar reactividad inmediata
-    const cursoSeleccionado = productos.find(p => normalizar(p.nombre) === normalizar(datos.inscripcion || ""));
-    if (cursoSeleccionado && cursoSeleccionado.stock > 0) {
-      cursoSeleccionado.stock -= 1;
-      if (cursoSeleccionado.stock === 0) {
-        cursoSeleccionado.disponible = false;
+    // Descontar un cupo por cada curso incluido en el pedido.
+    let huboCambioStock = false;
+    cursosPedido.forEach(({ nombre }) => {
+      const curso = productos.find((producto) => normalizar(producto.nombre) === normalizar(nombre));
+      if (curso && curso.stock > 0) {
+        curso.stock -= 1;
+        curso.disponible = curso.stock > 0;
+        huboCambioStock = true;
       }
+    });
+    if (huboCambioStock) {
       actualizar();
     }
 
@@ -374,12 +380,14 @@ if (formulario) {
         <h4>¡Inscripción confirmada con éxito!</h4>
         <p>Bienvenida/o <strong>${datos.nombre}</strong> a la <em>Compañía de Modelaje MAHE</em>.</p>
         <p>Tu plaza para <strong>${datos.inscripcion || "el curso seleccionado"}</strong> ha sido reservada para el <strong>${datos.fecha}</strong>. Te contactaremos al teléfono <strong>${datos.telefono}</strong>.</p>
+        ${cursosPedido.length ? `<p>Total por ${meses} ${meses === 1 ? "mes" : "meses"}: <strong>Bs ${totalInscripcion.toFixed(2)}</strong>${descuento ? ` (incluye descuento de Bs ${descuento.toFixed(2)} por mes)` : ""}.</p>` : ""}
       </div>
     `;
     avisoConfirmacion.scrollIntoView({ behavior: "smooth", block: "center" });
 
     mostrarNotificacion(`¡Felicidades ${datos.nombre}! Tu inscripción ha sido registrada.`, "🎓");
 
+    if (typeof window.limpiarTableroPedidos === "function") window.limpiarTableroPedidos();
     formulario.reset();
   });
 }

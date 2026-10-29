@@ -25,6 +25,7 @@
             <div class="estado-agencia">
                 <span id="cupos-resumen" class="badge-cupos">Cupos: Damas (40) • Varones (25) • Kids (30)</span>
             </div>
+            <button type="button" id="tema-toggle" aria-pressed="false">☾ Modo oscuro</button>
         </div>
 
         <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-movil">
@@ -91,8 +92,53 @@
 
             <p id="resultado" aria-live="polite" class="contador-resultados"></p>
 
-            <!-- CONTENEDOR DINÁMICO DE TARJETAS DE CURSOS -->
-            <div id="lista-productos" class="contenedor-modelos"></div>
+            <section id="tablero-pedidos" class="tablero-pedidos" aria-labelledby="titulo-tablero-pedidos">
+                <div class="encabezado-seccion">
+                    <h2 id="titulo-tablero-pedidos">Elige tus cursos</h2>
+                    <p class="subtitulo-seccion">Agrega un curso con el botón o arrástralo al pedido.</p>
+                </div>
+
+                <div class="selector-pedido-layout">
+                    <section class="catalogo-pedido-panel" aria-labelledby="titulo-catalogo-pedido">
+                        <h3 id="titulo-catalogo-pedido">Cursos disponibles</h3>
+                        <div id="lista-productos" class="contenedor-modelos"></div>
+                    </section>
+
+                    <aside class="pedido-lateral" aria-labelledby="titulo-resumen-pedido">
+                        <h3 id="titulo-resumen-pedido">Tu pedido</h3>
+                        <div class="resumen-pedido">
+                            <p id="contador-pedido" aria-live="polite">0 cursos en el pedido</p>
+                            <div class="total-pedido">
+                                <span>Total de inscripción</span>
+                                <strong id="total-pedido">Bs 0.00</strong>
+                                <small id="detalle-pedido">El total se actualizará al agregar cursos.</small>
+                            </div>
+                            <button type="button" id="vaciar-pedido" class="btn-inscribir">Vaciar pedido</button>
+                            <a class="continuar-inscripcion" href="#pedido">Continuar inscripción</a>
+                        </div>
+
+                        <div id="zona-pedido" class="zona-pedido" aria-label="Zona para agregar cursos al pedido">
+                            <span class="zona-pedido-icono" aria-hidden="true">◇</span>
+                            <strong>Arrastra los cursos aquí</strong>
+                            <span>o usa el botón Agregar de cada curso</span>
+                        </div>
+                    </aside>
+                </div>
+
+                <section class="seleccion-pedido" aria-labelledby="titulo-seleccion-pedido">
+                    <div class="encabezado-seleccion-pedido">
+                        <h3 id="titulo-seleccion-pedido">Cursos de tu pedido</h3>
+                        <p>Tu selección, lista para brillar.</p>
+                    </div>
+                    <ul id="cursos-seleccionados" class="cursos-seleccionados" aria-live="polite"></ul>
+                </section>
+
+                <figure class="grafico-pedido">
+                    <figcaption>Importe mensual por curso</figcaption>
+                    <canvas id="grafico-pedidos" width="900" height="220"
+                        aria-label="Gráfico del importe mensual por curso" role="img"></canvas>
+                </figure>
+            </section>
 
             <!-- LOGROS Y DISCIPLINAS DESTACADAS -->
             <div class="disciplinas-grid">
@@ -360,9 +406,9 @@
                 <fieldset>
                     <legend>Detalles de tu Inscripción</legend>
                     <p class="campo">
-                        <label for="inscripcion">Curso o Categoría de Modelaje <span class="requerido">*</span></label>
-                        <select id="inscripcion" name="inscripcion" required>
-                            <option value="">Selecciona tu curso...</option>
+                        <label for="inscripcion">Cursos de Modelaje <span class="requerido">*</span></label>
+                        <select id="inscripcion" name="inscripcion" multiple required size="5"
+                            aria-describedby="ayuda-inscripcion">
                             <option value="Categoria Damas">Categoría Damas (Bs 250/mes)</option>
                             <option value="Categoria Varones">Categoría Varones (Bs 200/mes)</option>
                             <option value="Categoria Kids">Categoría Kids (Bs 180/mes)</option>
@@ -374,7 +420,18 @@
                             <option value="Fotopose Editorial">Fotopose Editorial (Bs 100/mes)</option>
                             <option value="Maquillaje y Estilismo">Maquillaje y Estilismo (Bs 140/mes)</option>
                         </select>
+                        <small id="ayuda-inscripcion" class="ayuda-campo">Mantén presionado Ctrl para elegir varios cursos. También se actualiza con tu pedido.</small>
                     </p>
+
+                    <div id="resumen-inscripcion" class="resumen-inscripcion" aria-live="polite">
+                        <h4>Cursos que tomarás</h4>
+                        <ul id="lista-resumen-inscripcion"></ul>
+                        <dl>
+                            <div><dt>Subtotal mensual</dt><dd id="subtotal-formulario">Bs 0.00</dd></div>
+                            <div><dt>Descuento</dt><dd id="descuento-formulario">Bs 0.00</dd></div>
+                            <div><dt>Cantidad a pagar</dt><dd id="total-formulario">Bs 0.00</dd></div>
+                        </dl>
+                    </div>
 
                     <p class="campo">
                         <label for="cantidad">Cantidad de meses a cursar</label>
@@ -431,6 +488,9 @@
                     La Paz, Bolivia<br>
                     Teléfono: <a href="tel:71990990">71990990</a>
                 </address>
+                <p>Tu ubicación solo se usa para calcular una distancia aproximada al local.</p>
+                <button type="button" id="ubicarme" class="btn-primario">Calcular distancia</button>
+                <p id="estado-ubicacion" aria-live="polite"></p>
             </div>
             <div class="pie-columna">
                 <h3>Horarios de Secretaría</h3>
@@ -453,6 +513,8 @@
     <script src="jquery-comparado.js"></script>
     <script src="jquery-panel.js"></script>
     <script src="remoto.js"></script>
+    <script src="preferencias.js"></script>
+    <script src="tablero.js"></script>
 </body>
 
 </html>
