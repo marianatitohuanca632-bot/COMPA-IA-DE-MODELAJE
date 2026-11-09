@@ -51,17 +51,19 @@ $("#acordeon").on("click", ".titulo", function () {
   const $titulo = $(this);
   const $cuerpo = $titulo.next(".cuerpo");   // el hermano siguiente
 
-  // .stop() vacía la cola de animaciones antes de empezar otra.
-  // SIN ESTO: al hacer clic rápido varias veces, cada clic encola una
-  // animación y el panel se abre y cierra solo durante varios segundos.
-  // Es el bug más visible de jQuery y casi nadie lo conoce.
-  $cuerpo.stop(true, true).slideToggle(200);
+  const estaAbierto = $titulo.attr("aria-expanded") === "true";
 
-  $titulo.attr("aria-expanded", $titulo.attr("aria-expanded") !== "true");
-
-  // Acordeón de verdad: cerrar los demás. .not() excluye de una selección.
-  $("#acordeon .cuerpo").not($cuerpo).stop(true, true).slideUp(200);
+  // Cerrar los demás paneles y sincronizar sus estados accesibles.
+  $("#acordeon .cuerpo").not($cuerpo).removeClass("abierto");
   $("#acordeon .titulo").not($titulo).attr("aria-expanded", "false");
+
+  if (estaAbierto) {
+    $cuerpo.removeClass("abierto");
+    $titulo.attr("aria-expanded", "false");
+  } else {
+    $cuerpo.addClass("abierto");
+    $titulo.attr("aria-expanded", "true");
+  }
 });
 
 // ── 3. LOS EFECTOS ──────────────────────────────────────────────────────

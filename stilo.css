@@ -81,6 +81,38 @@ body.tema-oscuro h1 {
   -webkit-text-fill-color: transparent;
 }
 
+body.tema-oscuro fieldset {
+  background: var(--color-superficie);
+}
+
+body.tema-oscuro input[type="text"],
+body.tema-oscuro input[type="email"],
+body.tema-oscuro input[type="tel"],
+body.tema-oscuro input[type="number"],
+body.tema-oscuro input[type="date"],
+body.tema-oscuro select,
+body.tema-oscuro textarea {
+  color: #f3edf2;
+  background: #19161a;
+  border-color: #5b505b;
+}
+
+body.tema-oscuro input::placeholder,
+body.tema-oscuro textarea::placeholder {
+  color: #c6bbc5;
+  opacity: 1;
+}
+
+body.tema-oscuro option {
+  color: #f3edf2;
+  background: #19161a;
+}
+
+body.tema-oscuro .resumen-inscripcion,
+body.tema-oscuro .campo-terminos label {
+  color: var(--color-texto);
+}
+
 /* ── 2. TIPOGRAFÍA HAUTE COUTURE ───────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: "Playfair Display", "Bodoni MT", "Didot", "Times New Roman", serif;
@@ -1244,6 +1276,11 @@ figcaption {
   border-top: 1px solid var(--borde);
   font-size: 0.92rem;
   color: var(--color-suave);
+}
+
+.acordeon-elegante .cuerpo.abierto,
+.acordeon-elegante .item-acordeon:has(.titulo[aria-expanded="true"]) > .cuerpo {
+  display: block;
 }
 
 /* ── 12. AVISOS & PRÓXIMOS CASTINGS (JQUERY EFFECTS) ───────────────────── */

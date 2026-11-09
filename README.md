@@ -66,11 +66,6 @@ El proyecto integra semántica HTML5, estilos avanzados en CSS con diseño de al
 ---
 
 ## Laboratorio 2
-
-### Interfaz, datos, DOM y comunicación con la web
-
-El Laboratorio 2 amplió la aplicación de la academia con JavaScript aplicado al catálogo real de MAHE. Se utilizaron datos estructurados, funciones, renderizado dinámico, eventos y componentes interactivos.
-
 ### Funcionalidades desarrolladas
 
 - Creación de objetos y arreglos de cursos con nombre, categoría, público, precio, cupos, disponibilidad y descripción.
@@ -89,13 +84,7 @@ El Laboratorio 2 amplió la aplicación de la academia con JavaScript aplicado a
 ---
 
 ## Laboratorio 3
-
-### Almacenamiento, ubicación, tablero de pedidos y gráficos
-
-El Laboratorio 3 integró la persistencia de preferencias y un selector interactivo de cursos para convertir el catálogo en una experiencia de inscripción más completa.
-
 ### Funcionalidades desarrolladas
-
 - Guardado del tema claro u oscuro con `localStorage`, reaplicación al recargar y cambio mediante un botón accesible.
 - Uso de `try/catch` para soportar almacenamiento bloqueado o datos que no se puedan leer.
 - Solicitud de geolocalización únicamente al accionarla mediante el botón de ubicación.

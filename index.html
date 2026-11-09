@@ -262,27 +262,6 @@
             </figure>
         </section>
 
-        <!-- SECCIÓN: LABORATORIO COMPARATIVO (VANILLA JS VS JQUERY) -->
-        <section id="comparacion" class="seccion-bloque">
-            <div class="encabezado-seccion">
-                <h2>Panel Interactivo: Vanilla JS vs jQuery</h2>
-                <p class="subtitulo-seccion">Demostración técnica de manipulación del DOM aplicada a la gestión de
-                    nuestra academia.</p>
-            </div>
-
-            <div class="comparacion-botones">
-                <button type="button" id="boton-vanilla" class="btn-demo">Alternar con Vanilla JS</button>
-                <button type="button" id="boton-jquery" class="btn-demo">Alternar con jQuery</button>
-            </div>
-
-            <div class="comparacion-salidas">
-                <p id="salida-vanilla" class="caja-salida">Estado MAHE (Vanilla JS): Inscripciones abiertas y pasarela
-                    activa.</p>
-                <p id="salida-jquery" class="caja-salida">Estado MAHE (jQuery): Nuevos castings y eventos programados
-                    para esta semana.</p>
-            </div>
-        </section>
-
         <!-- SECCIÓN: PREGUNTAS FRECUENTES (ACORDEÓN JQUERY) -->
         <section id="panel" class="seccion-bloque">
             <div class="encabezado-seccion">
@@ -327,6 +306,42 @@
                     <div class="cuerpo">
                         <p>Aceptamos transferencias bancarias, pagos vía QR y pagos en efectivo en secretaría. Además,
                             brindamos un 10% de descuento al inscribir dos o más materias simultáneas.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Cómo sé qué cursos tienen cupos disponibles?</button></h3>
+                    <div class="cuerpo">
+                        <p>El catálogo muestra la cantidad de cupos disponible en cada tarjeta. También puedes activar
+                            la opción “Solo con cupos disponibles” para visualizar únicamente los cursos que aún pueden
+                            recibir inscripciones.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Puedo inscribirme en varios cursos al mismo tiempo?</button></h3>
+                    <div class="cuerpo">
+                        <p>Sí. Puedes agregar uno o varios cursos al pedido arrastrándolos desde el catálogo o mediante
+                            el botón “Agregar”. Todos aparecerán en el formulario de inscripción y obtienen un 10% de
+                            descuento cuando eliges dos o más materias.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Qué información debo enviar para reservar una vacante?</button></h3>
+                    <div class="cuerpo">
+                        <p>Debes completar tu nombre, correo, teléfono, fecha de inicio, cantidad de meses, cursos
+                            seleccionados y aceptar los términos. Antes de confirmar podrás revisar el subtotal, el
+                            descuento y la cantidad final a pagar.</p>
+                    </div>
+                </div>
+
+                <div class="item-acordeon">
+                    <h3><button type="button" class="titulo" aria-expanded="false">¿Para qué se utiliza mi ubicación?</button></h3>
+                    <div class="cuerpo">
+                        <p>La ubicación es opcional y solo se solicita al presionar “Calcular distancia”. Se utiliza
+                            para mostrar la distancia aproximada hasta la academia MAHE; si prefieres, puedes seguir
+                            usando toda la página sin compartirla.</p>
                     </div>
                 </div>
             </div>
